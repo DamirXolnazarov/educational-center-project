@@ -149,7 +149,7 @@ import Logo from '../components/logo.vue'
     <div class="dividerBlock px-[155px] w-[100%] top-[400px] absolute h-[900px]">
       <div class="BlockInside w-[100%] h-[100%] rounded-[10px]">
         <div class="topMenu w-[100%] flex flex-row cursor-pointer">
-          <div class="jobs rounded-t-[10px] w-[25%] h-[80px] duration-300 flex flex-row justify-center items-center hover:bg-[white]" :class="{'selectedMenu' : this.dividerBlockMenuSelect == 0}">
+          <div class="jobs rounded-t-[10px] w-[25%] h-[80px] duration-300 flex flex-row justify-center items-center hover:bg-[white]">
           <span class="text-[#1f4675] text-[17px] font-black">Соҳалар</span>
         </div>
         <div class="commonServices  rounded-t-[10px] h-[80px] duration-300 w-[25%] flex flex-row justify-center items-center hover:bg-[white]">
