@@ -1,5 +1,6 @@
 <script setup>
 import Logo from '../components/logo.vue'
+import Card from '../components/cardOfJobs.vue'
 </script>
 
 <template>
@@ -162,8 +163,9 @@ import Logo from '../components/logo.vue'
           <span class="text-[#1f4675] text-[17px] font-black">For foreigners</span>
         </div>
       </div>
-      <div class="dividerBlock_contents bg-[white] w-[100%] h-[500px]">
-        
+      <div class="dividerBlock_contents p-[30px] bg-[white] w-[100%] h-[500px]">
+        <Card ViewedNum="25" icon="https://my.gov.uz/fonts/flaticons/035-contacts.svg" nameOfJob="Фукаролик"/>
+      
       </div>
     </div>
     </div>
