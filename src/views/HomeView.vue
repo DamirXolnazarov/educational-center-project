@@ -197,7 +197,7 @@ import axios from 'axios';
         </div>
         <div class="areaToWrite right-[0px] absolute bottom-0 w-[100%] h-[100px]">
           <div class="inputArea h-[50%] relative">
-            <input v-model="this.text" placeholder="Хабар киритинг" @input="sendMessage(e)"
+            <input v-model="text" placeholder="Хабар киритинг" @input="sendMessage(e)"
               class='tracking-tighter text-[15px] h-[100%] pl-[15px] text-black w-[80%]'>
             <div class="sendIcon absolute right-[15px] top-[15px]" @click="SendSMS()"></div>
           </div>
