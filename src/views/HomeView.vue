@@ -202,7 +202,7 @@ import axios from 'axios';
             <div class="sendIcon absolute right-[15px] top-[15px]" @click="SendSMS()"></div>
           </div>
           <div class="Tools h-[50%] flex flex-row justify-center items-center">
-            <div class="anotherTools">
+            <div @click="AddEmoji()" class="anotherTools">
 
             </div>
           </div>
@@ -384,6 +384,9 @@ export default {
           link: 'https://my.gov.uz/fonts/flaticons/021-folder.svg',
           colorOfIco: '#119cec'
         },
+      ],
+      emojiArray:[
+        "😇", "🦄", "😕", "😡","😈","😞","😘","😋","😥","😩","😁","😆","😉","😎","😐","😜","😮","👍","👎","😃"
       ]
     };
   },
@@ -442,6 +445,9 @@ export default {
     },
     beforeDestroy() {
       clearInterval(this.intervalId);
+    },
+    AddEmoji(){
+     this.text += '🦄'
     },
     SendSMS() {
       if (this.text !== '') {
