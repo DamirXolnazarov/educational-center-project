@@ -1,6 +1,7 @@
 <script setup>
 import Logo from '../components/logo.vue'
 import Card from '../components/cardOfJobs.vue'
+import CardF from '../components/cardForForeginers.vue'
 import axios from 'axios';
 </script>
 
@@ -153,37 +154,50 @@ import axios from 'axios';
         </div>
       </div>
     </div>
-    <div class="dividerBlock px-[155px] w-[100%] top-[400px] absolute h-[900px]">
+    <div class="dividerBlock px-[155px] w-[100%] top-[400px] mt-[-150px] mb-[50px]">
       <div class="BlockInside w-[100%] h-[100%] rounded-[10px]">
         <div class="topMenu w-[100%] flex flex-row cursor-pointer">
-          <div
+          <div @click="dividerBlockMenuSelect = 0"
             class="jobs rounded-t-[10px] w-[25%] h-[80px] duration-300 flex flex-row justify-center items-center hover:bg-[white]"
             :class="{ 'selectedMenu': dividerBlockMenuSelect == 0 }">
             <span class="text-[#1f4675] text-[17px] font-black">Соҳалар</span>
           </div>
-          <div
+          <div @click="dividerBlockMenuSelect = 1" :class="{ 'selectedMenu': dividerBlockMenuSelect == 1 }"
             class="commonServices  rounded-t-[10px] h-[80px] duration-300 w-[25%] flex flex-row justify-center items-center hover:bg-[white]">
             <span class="text-[#1f4675] text-[17px] font-black">Оммабоп хизматлар</span>
           </div>
-          <div
+          <div @click="dividerBlockMenuSelect = 2" :class="{ 'selectedMenu': dividerBlockMenuSelect == 2 }"
             class="help w-[25%] rounded-t-[10px] h-[80px] flex duration-300 flex-row justify-center items-center hover:bg-[white]">
             <span class="text-[#1f4675] text-[17px] font-black">Ёрдам ва кўмак</span>
           </div>
-          <div
+          <div @click="dividerBlockMenuSelect = 3" :class="{ 'selectedMenu': dividerBlockMenuSelect == 3 }"
             class="forForeginers rounded-t-[10px] h-[80px] w-[25%] duration-300 flex flex-row justify-center items-center hover:bg-[white]">
             <span class="text-[#1f4675] text-[17px] font-black">For foreigners</span>
           </div>
         </div>
         <div class="dividerBlock_contents pl-[12px] pt-[20px] pb-[30px] bg-[white] w-[100%] h-[935px]">
-          <Card v-for="i of datasOfMenus" class="float-left" :key="i.id" :ViewedNum="i.num" :icon="i.link"
-            :nameOfJob="i.nameOfJob" :colorOfIco="i.colorOfIco" />
-
+          <Card v-for="i of datasOfMenus[0].data" class="float-left" :key="i.id" :ViewedNum="i.num" :icon="i.link"
+            v-if="dividerBlockMenuSelect == 0" :nameOfJob="i.nameOfJob" :colorOfIco="i.colorOfIco" />
+          <CardF v-for="i of datasOfMenus[1].data" class="float-left" :key="i.id" :icon="i.link"
+            v-if="dividerBlockMenuSelect == 3" :nameOfJob="i.nameOfJob" :colorOfIco="i.colorOfIco" />
         </div>
       </div>
     </div>
-    <div class="chatWebInterFace w-[340px] bg-[white] h-[400px]">
+    <div @click="showChatBtn"
+      class="chatInterface cursor-pointer w-[300px] h-[40px] bg-[red] fixed bottom-[0] right-[30px]">
       <div class="leaf"></div>
-      <div class="exit"></div>
+      <div class="topInterface1 flex flex-row pl-[20px] items-center justify-start">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-envelope"
+          viewBox="0 0 16 16">
+          <path
+            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+        </svg>
+        <span class="text-white text-[15px] ml-[15px]">Чат-бот (Beta)</span>
+      </div>
+    </div>
+    <div class="chatWebInterFace w-[340px] bg-[white] h-[400px]" v-if="showChat">
+      <div @click="closeChat" class="exit"></div>
+      <div class="leaf"></div>
       <div class="topInterface flex flex-col pl-[20px] justify-center">
         <span class="text-white text-[15px]">Хабарингизни ёзинг</span>
         <span class="text-white opacity-[70%] text-[12px]">Операторлар онлайн!</span>
@@ -217,6 +231,35 @@ import axios from 'axios';
       </div>
 
     </div>
+    <div class="SocialMedia w-[100%] h-[330px]">
+      <div class="textsOfSocialMedia flex flex-col items-center">
+
+        <span class="h-[100px] flex pb-[10px] flex-row justify-center items-end text-[20px] text-white uppercase font-black">Биз ижтимоий тармоқларда</span>
+        <span class="text-white text-[16px] w-[80%] text-center">Бизнинг ижтимоий тармоқлардаги саҳифаларимизда электрон ҳукумат доирасидаги сўнгги ўзгаришлар ва хабарлар
+          билан танишишингиз, шунингдек давлат хизматларидан фойдаланиш соҳасида сизни қизиқтирган саволларингизни
+          йўллашингиз мумкин </span>
+        <div class="links mt-[50px] text-white flex flex-row justify-between w-[58%]">
+                <div class="tg w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
+                  <img src="https://my.gov.uz/svg/telegram.svg" class="mr-[20px]" alt="">
+                  <span>Telegram</span>
+                </div>
+                <div class="yt w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
+                  <img src="https://my.gov.uz/svg/youtube.svg" class="mr-[20px]" alt="">
+                  <span>YouTube</span>
+                </div>
+                <div class="fb w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
+                  <img src="https://my.gov.uz/img/facebook.png" class="mr-[20px]" alt="">
+                  <span>Facebook</span>
+                </div>
+                <div class="inst w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
+                  <img src="https://my.gov.uz/svg/instagram.svg" class="mr-[20px]" alt="">
+                  <span>Instagram</span>
+                </div>
+        </div>
+      </div>
+      <div class="left_corner"></div>
+      <div class="right_corner"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -225,6 +268,7 @@ export default {
     return {
       aloqaSelect: false,
       langSelect: false,
+      showChat: false,
       text: '',
       choice: true,
       words: ["Пенсия", "Яшаш жойи", "Субсидия", "IMEI", "COVID-19", "Ойлик"],
@@ -237,126 +281,163 @@ export default {
       dividerBlockMenuSelect: 0,
       datasOfMenus: [
         {
-          num: 25,
-          nameOfJob: 'Фукаролик',
-          colorOfIco: '#11a8ec',
-          link: 'https://my.gov.uz/fonts/flaticons/035-contacts.svg',
+          name: 'Jobs',
+          data: [
+            {
+              num: 25,
+              nameOfJob: 'Фукаролик',
+              colorOfIco: '#11a8ec',
+              link: 'https://my.gov.uz/fonts/flaticons/035-contacts.svg',
+            },
+            {
+              num: 43,
+              nameOfJob: 'Таълим',
+              link: 'https://my.gov.uz/fonts/flaticons/027-mortarboard.svg',
+              colorOfIco: '#df8e45'
+            },
+            {
+              num: 4,
+              nameOfJob: 'Оила ва болалар',
+              link: 'https://my.gov.uz/fonts/flaticons/010-teamwork.svg',
+              colorOfIco: '#dabc32'
+            },
+            {
+              num: 9,
+              nameOfJob: 'Ёшлар',
+              link: 'https://my.gov.uz/fonts/flaticons/023-file.svg',
+              colorOfIco: '#8ec5f1'
+            },
+            {
+              num: 24,
+              nameOfJob: 'Адлия',
+              link: 'https://my.gov.uz/fonts/flaticons/005-bank.svg',
+              colorOfIco: '#dd924f'
+            },
+            {
+              num: 34,
+              nameOfJob: 'Ижтимоий ҳимоя',
+              link: 'https://my.gov.uz/fonts/flaticons/020-donation.svg',
+              colorOfIco: '#979797'
+            },
+            {
+              num: 13,
+              nameOfJob: 'Маданият ва спорт',
+              link: 'https://my.gov.uz/fonts/flaticons/050-edition.svg',
+              colorOfIco: '#8a85c0'
+            },
+            {
+              num: 49,
+              nameOfJob: 'Маълумотномалар',
+              link: 'https://my.gov.uz/fonts/flaticons/004-file-2.svg',
+              colorOfIco: '#11a8ec'
+            },
+            {
+              num: 28,
+              nameOfJob: 'УЖКХ',
+              link: 'https://my.gov.uz/fonts/flaticons/026-sale.svg',
+              colorOfIco: '#11a8ec'
+            },
+            {
+              num: 36,
+              nameOfJob: 'Кўчмас мулк',
+              link: 'https://my.gov.uz/fonts/flaticons/008-mansion.svg',
+              colorOfIco: '#8ec483'
+            },
+            {
+              num: 35,
+              nameOfJob: 'Транспорт',
+              link: 'https://my.gov.uz/fonts/flaticons/005-car.svg',
+              colorOfIco: '#e78aaf'
+            },
+            {
+              num: 22,
+              nameOfJob: 'Иқтисодиёт, бизнес ва э-тижорат',
+              link: 'https://my.gov.uz/fonts/flaticons/019-analytics.svg',
+              colorOfIco: '#72b45e'
+            },
+            {
+              num: 142,
+              nameOfJob: 'Лицензиялаш',
+              link: 'https://my.gov.uz/fonts/flaticons/004-file-2.svg',
+              colorOfIco: '#7eb0ed'
+            },
+            {
+              num: 24,
+              nameOfJob: 'Солиқлар',
+              link: 'https://my.gov.uz/fonts/flaticons/035-percentage.svg',
+              colorOfIco: '#43cbe8'
+            },
+            {
+              num: 23,
+              nameOfJob: 'Божхона',
+              link: 'https://my.gov.uz/fonts/flaticons/049-worldwide.svg',
+              colorOfIco: '#b2b63b'
+            },
+            {
+              num: 20,
+              nameOfJob: 'Ахборот ва алоқа',
+              link: 'https://my.gov.uz/fonts/flaticons/032-network.svg',
+              colorOfIco: '#d98989'
+            },
+            {
+              num: 15,
+              nameOfJob: 'Экология ва геология',
+              link: 'https://my.gov.uz/fonts/flaticons/018-world.svg',
+              colorOfIco: '#3da51c'
+            },
+            {
+              num: 11,
+              nameOfJob: 'Соғлиқни сақлаш',
+              link: 'https://my.gov.uz/fonts/flaticons/018-stethoscope.svg',
+              colorOfIco: '#00c492'
+            },
+            {
+              num: 5,
+              nameOfJob: 'Эълонлар тахтаси',
+              link: 'https://my.gov.uz/fonts/flaticons/022-bullhorn.svg',
+              colorOfIco: '#11a8ec'
+            },
+            {
+              num: 27,
+              nameOfJob: 'Синов тартибидаги хизматлар',
+              link: 'https://my.gov.uz/fonts/flaticons/021-folder.svg',
+              colorOfIco: '#119cec'
+            },
+          ],
         },
         {
-          num: 43,
-          nameOfJob: 'Таълим',
-          link: 'https://my.gov.uz/fonts/flaticons/027-mortarboard.svg',
-          colorOfIco: '#df8e45'
-        },
-        {
-          num: 4,
-          nameOfJob: 'Оила ва болалар',
-          link: 'https://my.gov.uz/fonts/flaticons/010-teamwork.svg',
-          colorOfIco: '#dabc32'
-        },
-        {
-          num: 9,
-          nameOfJob: 'Ёшлар',
-          link: 'https://my.gov.uz/fonts/flaticons/023-file.svg',
-          colorOfIco: '#8ec5f1'
-        },
-        {
-          num: 24,
-          nameOfJob: 'Адлия',
-          link: 'https://my.gov.uz/fonts/flaticons/005-bank.svg',
-          colorOfIco: '#dd924f'
-        },
-        {
-          num: 34,
-          nameOfJob: 'Ижтимоий ҳимоя',
-          link: 'https://my.gov.uz/fonts/flaticons/020-donation.svg',
-          colorOfIco: '#979797'
-        },
-        {
-          num: 13,
-          nameOfJob: 'Маданият ва спорт',
-          link: 'https://my.gov.uz/fonts/flaticons/050-edition.svg',
-          colorOfIco: '#8a85c0'
-        },
-        {
-          num: 49,
-          nameOfJob: 'Маълумотномалар',
-          link: 'https://my.gov.uz/fonts/flaticons/004-file-2.svg',
-          colorOfIco: '#11a8ec'
-        },
-        {
-          num: 28,
-          nameOfJob: 'УЖКХ',
-          link: 'https://my.gov.uz/fonts/flaticons/026-sale.svg',
-          colorOfIco: '#11a8ec'
-        },
-        {
-          num: 36,
-          nameOfJob: 'Кўчмас мулк',
-          link: 'https://my.gov.uz/fonts/flaticons/008-mansion.svg',
-          colorOfIco: '#8ec483'
-        },
-        {
-          num: 35,
-          nameOfJob: 'Транспорт',
-          link: 'https://my.gov.uz/fonts/flaticons/005-car.svg',
-          colorOfIco: '#e78aaf'
-        },
-        {
-          num: 22,
-          nameOfJob: 'Иқтисодиёт, бизнес ва э-тижорат',
-          link: 'https://my.gov.uz/fonts/flaticons/019-analytics.svg',
-          colorOfIco: '#72b45e'
-        },
-        {
-          num: 142,
-          nameOfJob: 'Лицензиялаш',
-          link: 'https://my.gov.uz/fonts/flaticons/004-file-2.svg',
-          colorOfIco: '#7eb0ed'
-        },
-        {
-          num: 24,
-          nameOfJob: 'Солиқлар',
-          link: 'https://my.gov.uz/fonts/flaticons/035-percentage.svg',
-          colorOfIco: '#43cbe8'
-        },
-        {
-          num: 23,
-          nameOfJob: 'Божхона',
-          link: 'https://my.gov.uz/fonts/flaticons/049-worldwide.svg',
-          colorOfIco: '#b2b63b'
-        },
-        {
-          num: 20,
-          nameOfJob: 'Ахборот ва алоқа',
-          link: 'https://my.gov.uz/fonts/flaticons/032-network.svg',
-          colorOfIco: '#d98989'
-        },
-        {
-          num: 15,
-          nameOfJob: 'Экология ва геология',
-          link: 'https://my.gov.uz/fonts/flaticons/018-world.svg',
-          colorOfIco: '#3da51c'
-        },
-        {
-          num: 11,
-          nameOfJob: 'Соғлиқни сақлаш',
-          link: 'https://my.gov.uz/fonts/flaticons/018-stethoscope.svg',
-          colorOfIco: '#00c492'
-        },
-        {
-          num: 5,
-          nameOfJob: 'Эълонлар тахтаси',
-          link: 'https://my.gov.uz/fonts/flaticons/022-bullhorn.svg',
-          colorOfIco: '#11a8ec'
-        },
-        {
-          num: 27,
-          nameOfJob: 'Синов тартибидаги хизматлар',
-          link: 'https://my.gov.uz/fonts/flaticons/021-folder.svg',
-          colorOfIco: '#119cec'
-        },
+          name: 'Foreginers',
+          data: [
+            {
+              nameOfJob: 'Visitng Uzbekistan',
+              link: 'https://my.gov.uz/img/tourism/arrive.svg',
+              colorOfIco: '#11a8ec'
+            },
+            {
+              nameOfJob: 'E-services for foreigners',
+              link: 'https://my.gov.uz/img/tourism/check.svg',
+              colorOfIco: '#3da51c'
+            },
+            {
+              nameOfJob: 'FAQ for foreigners',
+              link: 'https://my.gov.uz/img/tourism/usefull.svg',
+              colorOfIco: '#43cbe8'
+            },
+            {
+              nameOfJob: 'Get an e-Visa',
+              link: 'https://my.gov.uz/fonts/flaticons/004-file-2.svg',
+              colorOfIco: '#1c79a5'
+            },
+            {
+              nameOfJob: 'IMEI for foreigners',
+              link: 'https://my.gov.uz/fonts/flaticons/032-network.svg',
+              colorOfIco: '#b09cff'
+            },
+          ]
+
+        }
       ],
+
       emojiArray: [
         "😇", "🦄", "😕", "😡", "😈", "😞", "😘", "😋", "😥", "😩", "😁", "😆", "😉", "😎", "😐", "😜", "😮", "👍", "👎", "😃"
       ]
@@ -415,6 +496,12 @@ export default {
         }
       }, 100);
     },
+    showChatBtn() {
+      this.showChat = !this.showChat
+    },
+    closeChat() {
+      this.showChat = !this.showChat
+    },
     beforeDestroy() {
       clearInterval(this.intervalId);
     },
@@ -454,6 +541,65 @@ export default {
 }
 </script>
 <style scoped>
+.textsOfSocialMedia {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.SocialMedia {
+  padding: 65px 15px 25px 15px;
+  position: relative;
+  overflow: hidden;
+  background: #008fff;
+}
+
+.links img{
+  width: 30px;
+}
+.SocialMedia::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(90, 211, 158, 1) 100%);
+  z-index: 2;
+}
+
+.left_corner {
+  background: url("../assets/corner_top_left.png");
+  width: 412px;
+  height: 440px;
+  position: absolute;
+  left: 0;
+  top: -65px;
+}
+
+.right_corner {
+  background: url("../assets/corner_bottom_right.png");
+  width: 427px;
+  height: 491px;
+  position: absolute;
+  bottom: -150px;
+  right: -10px;
+}
+
+@keyframes animationChat {
+  0% {
+    bottom: -100%;
+  }
+
+  100% {
+    bottom: 0%;
+  }
+}
+
 .home {
   width: 100%;
   height: 100%;
@@ -502,9 +648,7 @@ export default {
   font-weight: 600;
 }
 
-.lang {
-  color: rgb(97, 97, 97);
-}
+.lang {}
 
 .caret {
   display: inline-block;
@@ -568,6 +712,17 @@ button {
   position: fixed;
   /* bottom: -360px; */
   bottom: 0;
+  animation: animationChat .3s;
+  right: 30px;
+}
+
+.chatInterface {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 34px;
+  box-shadow: 0 12px 14px 8px rgba(0, 0, 0, .17);
+  position: fixed;
+  /* bottom: -360px; */
+  bottom: 0;
   right: 30px;
 }
 
@@ -583,6 +738,14 @@ button {
 .topInterface {
   width: 100%;
   height: 70px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 34px;
+  background: linear-gradient(95deg, rgb(0, 85, 201) 20%, rgb(24, 185, 212) 80%);
+}
+
+.topInterface1 {
+  width: 100%;
+  height: 40px;
   border-top-left-radius: 8px;
   border-top-right-radius: 34px;
   background: linear-gradient(95deg, rgb(0, 85, 201) 20%, rgb(24, 185, 212) 80%);
