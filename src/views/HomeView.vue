@@ -602,7 +602,6 @@ export default {
 
 .home {
   width: 100%;
-  height: 100%;
   background: #eff9ff;
 }
 
