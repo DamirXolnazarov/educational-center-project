@@ -4,7 +4,6 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <!-- <RouterLink to="/">Home</RouterLink> -->
-  <!-- <RouterLink to="/about">About</RouterLink> -->
   <RouterView />
 
   <div class="footer flex flex-col items-center justify-between text-white w-[100%] h-[98%]">

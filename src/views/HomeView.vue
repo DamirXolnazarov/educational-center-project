@@ -7,8 +7,77 @@ import axios from 'axios';
 
 <template>
   <div class="home">
+    <div class="burgerMenu px-[250px] py-[20px] text-[white]">
+      <div class="burgerMenuInside">
+        <div class="topPart py-[10px] pl-[40%] flex flex-row items-center justify-between">
+          <span class="font-black text-[18px]">Портал харитаси</span>
+          <div class="closeMenu">
+            <button @click="closeBurgerMenu" class="text-[20px]">✕</button>
+          </div>
+        </div>
+        <div class="contentMenu pt-[10px] flex flex-row items-start justify-between">
+          <ul class="text-[12px]">
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/cat.svg" alt=""> Соҳалар </li>
+            <li>Фуқаролик</li>
+            <li>Таълим</li>
+            <li>Оила ва болалар </li>
+            <li>Ёшлар </li>
+            <li>Адлия </li>
+            <li>Ижтимоий ҳимоя</li>
+            <li>Маданият ва спорт </li>
+            <li>Маълумотномалар </li>
+            <li>УЖКХ </li>
+            <li>Кўчмас мулк </li>
+            <li>Транспорт </li>
+            <li>Иқтисодиёт, бизнес ва э-тижорат </li>
+            <li>Лицензиялаш </li>
+            <li>Солиқлар </li>
+            <li>Божхона </li>
+            <li>Ахборот ва алоқа </li>
+            <li>Экология ва геология </li>
+            <li>Соғлиқни сақлаш </li>
+            <li>Эълонлар тахтаси </li>
+            <li>Синов тартибидаги хизматлар </li>
+          </ul>
+          <ul class="text-[12px]">
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/cat.svg" alt="">  Ҳукумат </li>
+            <li>Ҳукумат тўғрисида</li>
+            <li>Маҳаллий давлат ҳокимияти органлари</li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/life.svg" alt="">  Ҳаётий вазиятлар </li>
+            <li>Фарзанд туғилиши</li>
+            <li>Меҳнат муносабатлари</li>
+            <li>Никоҳ ва никоҳдан ажралишни қайд этиш</li>
+            <li>Пенсия ва нафақа</li>
+            <li>Таълим</li>
+            <li>Яшаш жойида прописка қилиш ва рўйхатдан ўтиш</li>
+            <li>Ногиронларнинг ижтимоий ҳимояси</li>
+            <li>Фавқулодда ҳолатлар</li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/foreigner.svg" alt="">   For foreigners </li>
+            <li>Visiting Uzbekistan</li>
+            <li>E-Services for foreigners</li>
+            <li>FAQ for foreigners</li>
+            <li>Get an e-Visa</li>
+            <li>IMEI for foreigners</li>
+          </ul>
+          <ul class="text-[12px]">
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/life.svg" alt="">  Коррупцияга қарши кураш </li>
+            <li>Коррупцияга қарши қандай курашиш керак?</li>
+            <li>Коррупция тўғрисида онлайн мурожаат</li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/help.svg" alt="">  Ёрдам ва кўмак </li>
+            <li>Телеграм чатботи</li>
+            <li>Қўлланмалар</li>
+            <li>Иловани текшириш</li>
+            <li>Иловани текшириш</li>
+            <li>Қайта алоқа</li>
+            <li>Youtube саҳифаси</li>
+            <li class="flex flex-row items-center mt-[40px] mb-[15px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/mob.svg" alt=""> Мобил илова </li>
+            <li><img class="w-[175px]" src="https://my.gov.uz/img/images/sitemap/qr_code_my.svg" alt=""> Юклаб олиш учун QR</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="header h-[102px] flex flex-row justify-between w-[100%] bg-[white] px-[155px]">
-      <Logo />
+      <Logo @click="showBurgerMenu"/>
       <div class="informs flex flex-row">
         <div class="suggestions h-[102px] flex flex-col justify-center">
           <div class="numbers flex flex-row w-[300px] text-[14px]">
@@ -157,20 +226,20 @@ import axios from 'axios';
     <div class="dividerBlock px-[155px] w-[100%] top-[400px] mt-[-150px] mb-[50px]">
       <div class="BlockInside w-[100%] h-[100%] rounded-[10px]">
         <div class="topMenu w-[100%] flex flex-row cursor-pointer">
-          <div @click="dividerBlockMenuSelect = 0"
+          <div @click="DividerBlock0"
             class="jobs rounded-t-[10px] w-[25%] h-[80px] duration-300 flex flex-row justify-center items-center hover:bg-[white]"
             :class="{ 'selectedMenu': dividerBlockMenuSelect == 0 }">
             <span class="text-[#1f4675] text-[17px] font-black">Соҳалар</span>
           </div>
-          <div @click="dividerBlockMenuSelect = 1" :class="{ 'selectedMenu': dividerBlockMenuSelect == 1 }"
+          <div @click="DividerBlock1" :class="{ 'selectedMenu': dividerBlockMenuSelect == 1 }"
             class="commonServices  rounded-t-[10px] h-[80px] duration-300 w-[25%] flex flex-row justify-center items-center hover:bg-[white]">
             <span class="text-[#1f4675] text-[17px] font-black">Оммабоп хизматлар</span>
           </div>
-          <div @click="dividerBlockMenuSelect = 2" :class="{ 'selectedMenu': dividerBlockMenuSelect == 2 }"
+          <div @click="DividerBlock2" :class="{ 'selectedMenu': dividerBlockMenuSelect == 2 }"
             class="help w-[25%] rounded-t-[10px] h-[80px] flex duration-300 flex-row justify-center items-center hover:bg-[white]">
             <span class="text-[#1f4675] text-[17px] font-black">Ёрдам ва кўмак</span>
           </div>
-          <div @click="dividerBlockMenuSelect = 3" :class="{ 'selectedMenu': dividerBlockMenuSelect == 3 }"
+          <div @click="DividerBlock3" :class="{ 'selectedMenu': dividerBlockMenuSelect == 3 }"
             class="forForeginers rounded-t-[10px] h-[80px] w-[25%] duration-300 flex flex-row justify-center items-center hover:bg-[white]">
             <span class="text-[#1f4675] text-[17px] font-black">For foreigners</span>
           </div>
@@ -180,6 +249,8 @@ import axios from 'axios';
             v-if="dividerBlockMenuSelect == 0" :nameOfJob="i.nameOfJob" :colorOfIco="i.colorOfIco" />
           <CardF v-for="i of datasOfMenus[1].data" class="float-left" :key="i.id" :icon="i.link"
             v-if="dividerBlockMenuSelect == 3" :nameOfJob="i.nameOfJob" :colorOfIco="i.colorOfIco" />
+          <CardF v-for="i of datasOfMenus[2].data" class="float-left" :key="i.id" :icon="i.link"
+            v-if="dividerBlockMenuSelect == 2" :nameOfJob="i.nameOfJob" :colorOfIco="i.colorOfIco" />
         </div>
       </div>
     </div>
@@ -234,27 +305,34 @@ import axios from 'axios';
     <div class="SocialMedia w-[100%] h-[330px]">
       <div class="textsOfSocialMedia flex flex-col items-center">
 
-        <span class="h-[100px] flex pb-[10px] flex-row justify-center items-end text-[20px] text-white uppercase font-black">Биз ижтимоий тармоқларда</span>
-        <span class="text-white text-[16px] w-[80%] text-center">Бизнинг ижтимоий тармоқлардаги саҳифаларимизда электрон ҳукумат доирасидаги сўнгги ўзгаришлар ва хабарлар
+        <span
+          class="h-[100px] flex pb-[10px] flex-row justify-center items-end text-[20px] text-white uppercase font-black">Биз
+          ижтимоий тармоқларда</span>
+        <span class="text-white text-[16px] w-[80%] text-center">Бизнинг ижтимоий тармоқлардаги саҳифаларимизда электрон
+          ҳукумат доирасидаги сўнгги ўзгаришлар ва хабарлар
           билан танишишингиз, шунингдек давлат хизматларидан фойдаланиш соҳасида сизни қизиқтирган саволларингизни
           йўллашингиз мумкин </span>
         <div class="links mt-[50px] text-white flex flex-row justify-between w-[58%]">
-                <div class="tg w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
-                  <img src="https://my.gov.uz/svg/telegram.svg" class="mr-[20px]" alt="">
-                  <span>Telegram</span>
-                </div>
-                <div class="yt w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
-                  <img src="https://my.gov.uz/svg/youtube.svg" class="mr-[20px]" alt="">
-                  <span>YouTube</span>
-                </div>
-                <div class="fb w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
-                  <img src="https://my.gov.uz/img/facebook.png" class="mr-[20px]" alt="">
-                  <span>Facebook</span>
-                </div>
-                <div class="inst w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
-                  <img src="https://my.gov.uz/svg/instagram.svg" class="mr-[20px]" alt="">
-                  <span>Instagram</span>
-                </div>
+          <div
+            class="tg w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
+            <img src="https://my.gov.uz/svg/telegram.svg" class="mr-[20px]" alt="">
+            <span>Telegram</span>
+          </div>
+          <div
+            class="yt w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
+            <img src="https://my.gov.uz/svg/youtube.svg" class="mr-[20px]" alt="">
+            <span>YouTube</span>
+          </div>
+          <div
+            class="fb w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
+            <img src="https://my.gov.uz/img/facebook.png" class="mr-[20px]" alt="">
+            <span>Facebook</span>
+          </div>
+          <div
+            class="inst w-[200px] p-[15px] flex flex-row justify-start items-center cursor-pointer border-[1px] border-white rounded-[8px]">
+            <img src="https://my.gov.uz/svg/instagram.svg" class="mr-[20px]" alt="">
+            <span>Instagram</span>
+          </div>
         </div>
       </div>
       <div class="left_corner"></div>
@@ -275,6 +353,8 @@ export default {
       currentWordIndex: 0,
       currentPlaceholder: "",
       ShowEmoji: false,
+      BurgerMenuActive: false,
+      BurgerMenuClose: false,
       intervalId: null,
       token: '6451910166:AAEnPmq1oQsg6Ttsw-azpCWKNyQWcvcIQRg',
       chat_Id: '-4001282356',
@@ -435,6 +515,46 @@ export default {
             },
           ]
 
+        },
+        {
+          name: 'Help',
+          data: [
+            {
+              nameOfJob: 'Телеграм чатботи',
+              colorOfIco: '#F08080',
+              link: 'https://my.gov.uz/img/male-job-search-symbol.png',
+            },
+            {
+              nameOfJob: 'Қўлланмалар',
+              colorOfIco: '#66bb6a',
+              link: 'https://my.gov.uz/img/businessman.png',
+            },
+            {
+              nameOfJob: 'Ариза ҳолатини текшириш',
+              colorOfIco: '#bbb86a',
+              link: 'https://my.gov.uz/img/file.png',
+            },
+            {
+              nameOfJob: 'Telegram канал',
+              colorOfIco: '#F08080',
+              link: 'https://my.gov.uz/img/telegram.png',
+            },
+            {
+              nameOfJob: 'Қайта алоқа',
+              colorOfIco: '#88bb7d',
+              link: 'https://my.gov.uz/img/feedback.png',
+            },
+            {
+              nameOfJob: 'Youtube саҳифаси',
+              colorOfIco: '#546e7a',
+              link: 'https://my.gov.uz/img/youtube.png',
+            },
+            {
+              nameOfJob: 'Хизматлар календари',
+              colorOfIco: '#11a8ec',
+              link: 'https://my.gov.uz/img/calendar.svg',
+            },
+          ]
         }
       ],
 
@@ -448,6 +568,29 @@ export default {
     this.startTyping();
   },
   methods: {
+    showBurgerMenu() {
+      this.BurgerMenuActive = true
+      this.BurgerMenuClose = false
+    },
+    closeBurgerMenu(){
+      this.BurgerMenuActive = false
+      this.BurgerMenuClose = true
+    },
+    DividerBlock0() {
+      this.dividerBlockMenuSelect = 0
+      document.querySelector('.dividerBlock_contents').style.height = '935px'
+    },
+    DividerBlock1() {
+      this.dividerBlockMenuSelect = 1
+    },
+    DividerBlock2() {
+      this.dividerBlockMenuSelect = 2
+      document.querySelector('.dividerBlock_contents').style.height = '500px'
+    },
+    DividerBlock3() {
+      this.dividerBlockMenuSelect = 3
+      document.querySelector('.dividerBlock_contents').style.height = '280px'
+    },
     AloqaListShow() {
       this.aloqaSelect = !this.aloqaSelect
       this.langSelect = false
@@ -541,6 +684,40 @@ export default {
 }
 </script>
 <style scoped>
+.topPart {
+  border-bottom: 1px solid white;
+}
+
+.burgerMenu ul li{
+  line-height: 27px;
+}
+.qattiq{
+  font-weight: 900;
+}
+.burgerMenu {
+  width: 100%;
+  transition: 1s;
+  height: 100%;
+  position: fixed;
+  z-index: 9999999999999;
+  left: -200%;
+  background: #1A6BC8;
+  overflow: hidden;
+  top: -200%;
+  opacity: 0%;
+}
+
+.burgerMenuActive {
+  left: 0;
+  top: 0;
+  opacity: 100%;
+}
+.burgerMenuClose{
+  left: 200%;
+  top: 200%;
+  opacity: 0%;
+}
+
 .textsOfSocialMedia {
   width: 100%;
   height: 100%;
@@ -557,9 +734,10 @@ export default {
   background: #008fff;
 }
 
-.links img{
+.links img {
   width: 30px;
 }
+
 .SocialMedia::before {
   content: '';
   display: block;
@@ -687,6 +865,7 @@ button {
   border-left-width: 1px;
   border-right-width: 1px;
   border-bottom-width: 1px;
+  transition: .3s;
   border-right-color: #BEDDF0;
   border-bottom-color: #BEDDF0;
   border-color: #BEDDF0;
@@ -710,6 +889,7 @@ button {
   box-shadow: 0 12px 14px 8px rgba(0, 0, 0, .17);
   position: fixed;
   /* bottom: -360px; */
+  z-index: 9999999;
   bottom: 0;
   animation: animationChat .3s;
   right: 30px;
@@ -721,6 +901,7 @@ button {
   box-shadow: 0 12px 14px 8px rgba(0, 0, 0, .17);
   position: fixed;
   /* bottom: -360px; */
+  z-index: 9999;
   bottom: 0;
   right: 30px;
 }
