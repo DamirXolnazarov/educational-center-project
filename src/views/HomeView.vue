@@ -7,17 +7,18 @@ import axios from 'axios';
 
 <template>
   <div class="home">
-    <div class="burgerMenu px-[250px] py-[20px] text-[white]">
+    <div class="burgerMenu px-[250px] py-[20px] text-[white]" :class="{'burgerMenuActive': isActive, 'burgerMenuClose': isClosed }">
       <div class="burgerMenuInside">
         <div class="topPart py-[10px] pl-[40%] flex flex-row items-center justify-between">
           <span class="font-black text-[18px]">Портал харитаси</span>
           <div class="closeMenu">
-            <button @click="closeBurgerMenu" class="text-[20px]">✕</button>
+            <button @click="close" class="text-[20px]">✕</button>
           </div>
         </div>
         <div class="contentMenu pt-[10px] flex flex-row items-start justify-between">
           <ul class="text-[12px]">
-            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/cat.svg" alt=""> Соҳалар </li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]"
+                src="https://my.gov.uz/img/images/sitemap/cat.svg" alt=""> Соҳалар </li>
             <li>Фуқаролик</li>
             <li>Таълим</li>
             <li>Оила ва болалар </li>
@@ -40,10 +41,12 @@ import axios from 'axios';
             <li>Синов тартибидаги хизматлар </li>
           </ul>
           <ul class="text-[12px]">
-            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/cat.svg" alt="">  Ҳукумат </li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]"
+                src="https://my.gov.uz/img/images/sitemap/cat.svg" alt=""> Ҳукумат </li>
             <li>Ҳукумат тўғрисида</li>
             <li>Маҳаллий давлат ҳокимияти органлари</li>
-            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/life.svg" alt="">  Ҳаётий вазиятлар </li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]"
+                src="https://my.gov.uz/img/images/sitemap/life.svg" alt=""> Ҳаётий вазиятлар </li>
             <li>Фарзанд туғилиши</li>
             <li>Меҳнат муносабатлари</li>
             <li>Никоҳ ва никоҳдан ажралишни қайд этиш</li>
@@ -52,7 +55,8 @@ import axios from 'axios';
             <li>Яшаш жойида прописка қилиш ва рўйхатдан ўтиш</li>
             <li>Ногиронларнинг ижтимоий ҳимояси</li>
             <li>Фавқулодда ҳолатлар</li>
-            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/foreigner.svg" alt="">   For foreigners </li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]"
+                src="https://my.gov.uz/img/images/sitemap/foreigner.svg" alt=""> For foreigners </li>
             <li>Visiting Uzbekistan</li>
             <li>E-Services for foreigners</li>
             <li>FAQ for foreigners</li>
@@ -60,24 +64,28 @@ import axios from 'axios';
             <li>IMEI for foreigners</li>
           </ul>
           <ul class="text-[12px]">
-            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/life.svg" alt="">  Коррупцияга қарши кураш </li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]"
+                src="https://my.gov.uz/img/images/sitemap/life.svg" alt=""> Коррупцияга қарши кураш </li>
             <li>Коррупцияга қарши қандай курашиш керак?</li>
             <li>Коррупция тўғрисида онлайн мурожаат</li>
-            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/help.svg" alt="">  Ёрдам ва кўмак </li>
+            <li class="flex flex-row items-center my-[10px] font-[900] text-[14px]"><img class="mr-[10px]"
+                src="https://my.gov.uz/img/images/sitemap/help.svg" alt=""> Ёрдам ва кўмак </li>
             <li>Телеграм чатботи</li>
             <li>Қўлланмалар</li>
             <li>Иловани текшириш</li>
             <li>Иловани текшириш</li>
             <li>Қайта алоқа</li>
             <li>Youtube саҳифаси</li>
-            <li class="flex flex-row items-center mt-[40px] mb-[15px] font-[900] text-[14px]"><img class="mr-[10px]" src="https://my.gov.uz/img/images/sitemap/mob.svg" alt=""> Мобил илова </li>
-            <li><img class="w-[175px]" src="https://my.gov.uz/img/images/sitemap/qr_code_my.svg" alt=""> Юклаб олиш учун QR</li>
+            <li class="flex flex-row items-center mt-[40px] mb-[15px] font-[900] text-[14px]"><img class="mr-[10px]"
+                src="https://my.gov.uz/img/images/sitemap/mob.svg" alt=""> Мобил илова </li>
+            <li><img class="w-[175px]" src="https://my.gov.uz/img/images/sitemap/qr_code_my.svg" alt=""> Юклаб олиш учун
+              QR</li>
           </ul>
         </div>
       </div>
     </div>
     <div class="header h-[102px] flex flex-row justify-between w-[100%] bg-[white] px-[155px]">
-      <Logo @click="showBurgerMenu"/>
+      <Logo @click="activate" />
       <div class="informs flex flex-row">
         <div class="suggestions h-[102px] flex flex-col justify-center">
           <div class="numbers flex flex-row w-[300px] text-[14px]">
@@ -352,6 +360,9 @@ export default {
       words: ["Пенсия", "Яшаш жойи", "Субсидия", "IMEI", "COVID-19", "Ойлик"],
       currentWordIndex: 0,
       currentPlaceholder: "",
+      clicked: false,
+      isActive: false,
+      isClosed: true,
       ShowEmoji: false,
       BurgerMenuActive: false,
       BurgerMenuClose: false,
@@ -568,13 +579,13 @@ export default {
     this.startTyping();
   },
   methods: {
-    showBurgerMenu() {
-      this.BurgerMenuActive = true
-      this.BurgerMenuClose = false
+    activate() {
+      this.isActive = true
+      this.isClosed = false
     },
-    closeBurgerMenu(){
-      this.BurgerMenuActive = false
-      this.BurgerMenuClose = true
+    close() {
+      this.isActive = false
+      this.isClosed = true
     },
     DividerBlock0() {
       this.dividerBlockMenuSelect = 0
@@ -688,12 +699,14 @@ export default {
   border-bottom: 1px solid white;
 }
 
-.burgerMenu ul li{
+.burgerMenu ul li {
   line-height: 27px;
 }
-.qattiq{
+
+.qattiq {
   font-weight: 900;
 }
+
 .burgerMenu {
   width: 100%;
   transition: 1s;
@@ -712,7 +725,8 @@ export default {
   top: 0;
   opacity: 100%;
 }
-.burgerMenuClose{
+
+.burgerMenuClose {
   left: 200%;
   top: 200%;
   opacity: 0%;
